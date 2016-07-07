@@ -88,15 +88,15 @@ class DeliveryComponent extends Component
      */
     public function send($params)
     {
-        $pid = pcntl_fork();
-        if ($pid == -1) {
+//        $pid = pcntl_fork();
+//        if ($pid == -1) {
 
-        } elseif(!$pid) {
+//        } elseif(!$pid) {
             /** @var string $from */
             $from = isset($params['from']) ? $params['from'] : $this->defaultEmail;
 
             if (empty($from)) {
-                throw new InvalidParamException('Parameters \'from\' or \defaultEmail\' mast be set');
+                throw new InvalidParamException('Parameters \'from\' or \'defaultEmail\' mast be set');
             }
 
             /** @var array|string $to */
@@ -144,7 +144,7 @@ class DeliveryComponent extends Component
             $mail = $mail->setSubject($subject);
 
             $mailer->send($mail);
-        }
+//        }
 //
 //        /** @var Application $app */
 //        $app = \Yii::createObject(Application::className());
