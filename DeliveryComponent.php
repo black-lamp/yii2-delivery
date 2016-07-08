@@ -45,9 +45,11 @@ class DeliveryComponent extends Component
     /** @var array mailer config */
     public $mail;
 
+    /** @var  bool send email in another process */
+    private $anotherProccess = false;
+
     /** @var  yii\swiftmailer\Mailer */
     private $mailer;
-
     /**
      * @inheritdoc
      */
@@ -88,10 +90,11 @@ class DeliveryComponent extends Component
      */
     public function send($params)
     {
-//        $pid = pcntl_fork();
-//        if ($pid == -1) {
 
-//        } elseif(!$pid) {
+        $pid = $this->anotherProccess ? pcntl_fork() : false;
+        if ($pid == -1) {
+
+        } elseif (!$pid) {
             /** @var string $from */
             $from = isset($params['from']) ? $params['from'] : $this->defaultEmail;
 
@@ -144,8 +147,8 @@ class DeliveryComponent extends Component
             $mail = $mail->setSubject($subject);
 
             $mailer->send($mail);
-//        }
-//
+        }
+
 //        /** @var Application $app */
 //        $app = \Yii::createObject(Application::className());
 //

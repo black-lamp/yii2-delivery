@@ -4,6 +4,6 @@ return [
     'basePath' => dirname(__DIR__),
     'class' => '\yii\web\Application',
     'components' => [
-
+        
     ]
 ];
