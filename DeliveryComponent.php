@@ -52,7 +52,7 @@ class DeliveryComponent extends Component
     public $mail;
 
     /** @var  bool send email in another process */
-    private $anotherProccess = false;
+    public $anotherProccess = false;
 
     /** @var  yii\swiftmailer\Mailer */
     private $mailer;
