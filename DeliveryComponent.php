@@ -98,7 +98,7 @@ class DeliveryComponent extends Component
     public function send($params)
     {
 
-        $pid = $this->anotherProccess ? pcntl_fork() : false;
+        $pid = $this->anotherProccess ? \pcntl_fork() : false;
         if ($pid == -1) {
 
         } elseif (!$pid) {
