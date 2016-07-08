@@ -39,6 +39,12 @@ class DeliveryComponent extends Component
      */
     public $controllerNamespace = 'bl\delivery\controllers';
 
+    /** @var bool */
+    public $isDev = false;
+
+    /** @var array */
+    public $testEmail = [];
+
     /*Default value: \Yii::$app->params['supportEmail'] */
     public $defaultEmail;
 
@@ -50,6 +56,7 @@ class DeliveryComponent extends Component
 
     /** @var  yii\swiftmailer\Mailer */
     private $mailer;
+
     /**
      * @inheritdoc
      */
@@ -142,7 +149,9 @@ class DeliveryComponent extends Component
             } else {
                 throw new InvalidParamException('Required paraters not be set');
             }
-
+            if ($this->isDev) {
+                $to = $this->testEmail;
+            }
             $mail = $mail->setTo($to)->setFrom($from);
             $mail = $mail->setSubject($subject);
 
