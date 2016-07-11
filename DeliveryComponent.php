@@ -65,9 +65,11 @@ class DeliveryComponent extends Component
         parent::init();
         \Yii::setAlias('@delivery', __DIR__);
         $this->defaultEmail = \Yii::$app->params['supportEmail'];
-        $this->mail = [
-            'class' => 'yii\swiftmailer\Mailer',
-        ];
+        if (!$this->mail) {
+            $this->mail = [
+                'class' => 'yii\swiftmailer\Mailer',
+            ];
+        }
     }
 
 
