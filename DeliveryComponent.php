@@ -143,7 +143,6 @@ class DeliveryComponent extends Component
                 } else {
                     $mail->setHtmlBody($message);
                 }
-
             } /* must be set params: view and/or param */
             elseif ($view = $params['view']) {
                 $param = isset($params['param']) ? $params['param'] : [];
@@ -154,10 +153,13 @@ class DeliveryComponent extends Component
             if ($this->isDev) {
                 $to = $this->testEmail;
             }
-            $mail = $mail->setTo($to)->setFrom($from);
+            $mail = $mail->setFrom($from);
             $mail = $mail->setSubject($subject);
+            foreach ($to as $email) {
+                $mail->setTo($email);
+                $mailer->send($mail);
 
-            $mailer->send($mail);
+            }
         }
 
 //        /** @var Application $app */
