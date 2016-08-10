@@ -146,7 +146,7 @@ class DeliveryComponent extends Component
             } /* must be set params: view and/or param */
             elseif ($view = $params['view']) {
                 $param = isset($params['param']) ? $params['param'] : [];
-                $mailer->compose($view, $param);
+                $mail = $mailer->compose($view, $param);
             } else {
                 throw new InvalidParamException('Required paraters not be set');
             }
