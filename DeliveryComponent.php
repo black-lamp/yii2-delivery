@@ -158,10 +158,8 @@ class DeliveryComponent extends Component
             foreach ($to as $email) {
                 $mail->setTo($email);
                 $mailer->send($mail);
-
             }
         }
-
 //        /** @var Application $app */
 //        $app = \Yii::createObject(Application::className());
 //
